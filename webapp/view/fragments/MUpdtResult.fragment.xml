@@ -1,0 +1,57 @@
+<!--  
+/**
+* @class
+* @public
+* @author X0115030
+* @since 10 March 2022
+* @extends 
+* @name com.amat.crm.svcmupdate.view.fragments.MUpdtResult
+*
+*********************************************************************************
+* Modifications.                                                                *
+* ***************                                                               *
+* Date        		Author			PCR No.			Description of change       *
+* *******************************************************************************
+* 10/03/2022		X0115030		PCR038711		Initial version             *
+*********************************************************************************
+*/
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+		<Dialog contentWidth="35%"
+			contentHeight="50%"
+			horizontalScrolling="false"
+			verticalScrolling="true"
+			showHeader="false">
+			<content>
+				<!-- ==================================================================== -->
+				<!-- List For Showing Resultant Data 									  -->
+				<!-- ==================================================================== -->
+				<List mode="None" 
+					  items="{MUResults>/}">
+					<NotificationListItem
+							title="{i18n>Home_Table_Service_Case}{i18n>COLON} {MUResults>Servicecaseno}"
+							description="{MUResults>Longtext}"
+							showCloseButton="false"
+							class="sapUiSmallMarginBottom">
+					</NotificationListItem>
+				</List>
+			</content>
+			<!-- ==================================================================== -->
+			<!-- Footer Design														  -->
+			<!-- ==================================================================== -->
+			<buttons>
+				<!-- Cancel / Close Mass Update Dialog -->
+				<Button id="id_MUpdtResult_Btn_Excel"
+						icon="{i18n>ICON_EXCEL}" 
+						press="onPressMassUpdtResExcel"
+						type="Emphasized"/>
+				<!-- Update Service Cases with Attachments -->
+				<Button id="id_MUpdtResult_Btn_Close"
+						text="{i18n>MASS_UPDT_RES_BTN_CLOSE}" 
+						press="onPressUpdateResultBtnClose"
+						type="Emphasized"/>
+			</buttons>
+		</Dialog>
+</core:FragmentDefinition>

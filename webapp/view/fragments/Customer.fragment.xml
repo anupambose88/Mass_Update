@@ -1,0 +1,33 @@
+<!--  
+/**
+* @class
+* @public
+* @author X0115030
+* @since 10 March 2022
+* @extends 
+* @name com.amat.crm.svcmupdate.view.fragments.Customer
+*
+*********************************************************************************
+* Modifications.                                                                *
+* ***************                                                               *
+* Date        		Author			PCR No.			Description of change       *
+* *******************************************************************************
+* 10/03/2022		X0115030		PCR038711		Initial version             *
+*********************************************************************************
+*/
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		search="handleCustomerDiagsearch"
+		confirm="handleCustomerDiaClose"
+		items="{Customer>/}"
+		class="sapUiSizeCompact">
+		<StandardListItem
+			title="{Customer>KeyValue1}"
+			description="{path: 'Customer>GuidKey', 
+						formatter: 'com.amat.crm.svcmupdate.util.formatter.onRemoveLeadingZero'}"
+			type="Active" />
+	</SelectDialog>
+</core:FragmentDefinition>

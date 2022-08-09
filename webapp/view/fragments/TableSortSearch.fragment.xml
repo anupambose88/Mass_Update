@@ -1,0 +1,50 @@
+<!--  
+/** 
+* @class
+* @public
+* @author X0115030
+* @since 10 March 2022
+* @extends 
+* @name com.amat.crm.massupdate.view.fragments.TableSortSearch
+*
+*********************************************************************************
+* Modifications.                                                                *
+* ***************                                                               *
+* Date        		Author			PCR No.			Description of change       *
+* *******************************************************************************
+* 10/03/2022		X0115030		PCR038711		Initial version             *
+*********************************************************************************
+*/
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ResponsivePopover
+		showHeader="false"
+		placement="Bottom"
+		class="sapUiSizeCompact">
+		<content>
+			<VBox class="sapUiSizeCompact" >
+				<!-- Sort Ascending Button -->
+				<Button text="{i18n>Home_Table_Sort_Ascending}"
+						icon="{i18n>ICON_SORT_ASCENDING}" 
+						type="Transparent"
+						width="10rem"
+						class="classBtnBlackColor"
+						press="onPressTableSortAscending"/>
+				<!-- Sort Descending -->
+				<Button text="{i18n>Home_Table_Sort_Descending}"
+						icon="{i18n>ICON_SORT_DESCENDING}" 
+						type="Transparent"
+						width="10rem"
+						class="classBtnBlackColor"
+						press="onPressTableSortDescending"/>
+				<!-- Search -->
+				<SearchField	id="idInpTabSerData"
+						placeholder="{i18n>Home_Table_Ph_Filter}"
+						search="onPressTableFilter"  
+						width="10rem"/>
+			</VBox>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

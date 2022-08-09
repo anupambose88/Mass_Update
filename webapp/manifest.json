@@ -1,0 +1,126 @@
+{
+    "@class": "",
+    "@public": "",
+    "@author": "X0115030",
+    "@since": "10 March 2022",
+    "@extends": "",
+    "@name": "com.amat.crm.svcmupdate.manifest",
+    "Modifications": {
+        "Change1": {
+             "Date": "10/03/2033",
+             "Author": "X0115030",
+             "PCR_No": "PCR038711",
+             "Description_of_change": "Initial_version"
+        }
+    },
+
+	"_version": "1.1.0",
+	"sap.app": {
+		"id": "com.amat.crm.svcmupdate",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		},
+		"dataSources": {
+			"oModel_alias": {
+				"uri": "/sap/opu/odata/SAP/ZQZG_CRM_SRVCASE_MASS_UPDATE_SRV",
+				"type": "OData"
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_bluecrystal",
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"config": {
+            "fullWidth": true
+        },
+		"rootView": {
+			"viewName": "com.amat.crm.svcmupdate.view.App",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.60.1",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.amat.crm.svcmupdate.i18n.i18n"
+				}
+			},
+			"oModel": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"dataSource": "oModel_alias"
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/Style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "com.amat.crm.svcmupdate.view",
+				"controlAggregation": "pages",
+				"controlId": "NavContainer",
+				"clearControlAggregation": false
+			},
+			"routes": [
+				{
+					"name": "Dashboard",
+					"pattern": "",
+					"target": [
+						"Dashboard"
+					]
+				}
+			],
+			"targets": {
+				"Dashboard": {
+					"viewType": "XML",
+					"viewName": "Dashboard",
+					"viewId"  :	"idDashboard"
+				}
+			}
+		}
+	}
+}

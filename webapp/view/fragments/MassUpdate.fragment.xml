@@ -1,0 +1,160 @@
+<!--  
+/**
+* @class
+* @public
+* @author X0115030
+* @since 10 March 2022
+* @extends 
+* @name com.amat.crm.svcmupdate.view.fragments.MassUpdate
+*
+*********************************************************************************
+* Modifications.                                                                *
+* ***************                                                               *
+* Date        		Author			PCR No.			Description of change       *
+* *******************************************************************************
+* 10/03/2022		X0115030		PCR038711		Initial version             *
+* 06/22/2022    	Vimal Pandu  	PCR040232       Hypercare changes        	*
+*********************************************************************************
+*/
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified"
+>
+	<!-- PCR040232++; added draggable, resizable and changed height to 75% -->
+	<Dialog
+		contentWidth="35%"
+		contentHeight="75%"
+		horizontalScrolling="false"
+		verticalScrolling="false"
+		draggable="true"
+		resizable="true"
+	>
+		<content>
+			<l:Grid
+				defaultSpan="L12 M12 S12"
+				class="sapUiSizeCompact classGridBorder"
+			>
+				<l:content>
+					<!-- Customer Decision -->
+					<HBox>
+						<Text
+							text="{i18n>MUF_CUSTOMER_DECISION}"
+							class="classPanelLabelText sapUiTinyMarginBegin"
+							width="11rem"
+						/>
+						<ComboBox
+							id="id_MUpdt_CB_Cust_Deci"
+							change="handleChangeMUpdtCB"
+							width="20rem"
+							items="{CustDeci>/}"
+						>
+							<core:Item
+								text="{CustDeci>KeyValue1}"
+								key="{CustDeci>GuidKey}"
+							/>
+						</ComboBox>
+					</HBox>
+					<!-- Reason for Waive / Reject -->
+					<HBox>
+						<Text
+							text="{i18n>MUF_REASON_WAIVE_REJECT}"
+							class="classPanelLabelText sapUiTinyMarginBegin"
+							width="11rem"
+						/>
+						<ComboBox
+							id="id_MUpdt_CB_Res_Wav_Rej"
+							change="handleChangeMUpdtCB"
+							width="20rem"
+							items="{RejWaive>/}"
+						>
+							<core:Item
+								text="{RejWaive>KeyValue1}"
+								key="{RejWaive>GuidKey}"
+							/>
+						</ComboBox>
+					</HBox>
+					<!-- File Upload -->
+					<!-- Start of PCR040232++ changes -->
+					<VBox class="sapUiTinyMargin">
+						<ObjectStatus
+							visible="{= ${dashboardView>/EvType} === 'SAFETY'}"
+							state="Error"
+							text="{i18n>AttachmentSafetyRetrofits}"
+						/>
+						<ObjectStatus
+							visible="{= ${dashboardView>/EvType} !== 'SAFETY'}"
+							state="Error"
+							text="{i18n>AttachmentNonSafetyRetrofits}"
+						/>
+						<ObjectStatus
+							state="Error"
+							text="{i18n>ServiceCaseCancelMsg}"
+						/>
+					</VBox>
+					<!-- End of PCR040232++ changes -->
+					<HBox>
+						<Text
+							id="id_MUpdt_Txt_Attachment"
+							class="classPanelLabelText sapUiTinyMarginBegin"
+							width="11rem"
+						/>
+						<u:FileUploader
+							id="id_MUpdt_File_Upload"
+							multiple="true"
+							style="Emphasized"
+							change="onFileUploadChange"
+							useMultipart="false"
+							fileSizeExceed="onExceedFileSize"
+							buttonOnly="true"
+							buttonText="{i18n>ATTACHMENT_BTN_TEXT}"
+							sameFilenameAllowed="true"
+							icon="{i18n>ICON_UPLOAD}"
+						/>
+					</HBox>
+				</l:content>
+			</l:Grid>
+			<!-- List for Showing Attachments -->
+			<ScrollContainer
+				height="20rem"
+				width="100%"
+				vertical="true"
+				focusable="true"
+			>
+				<List
+					id="id_MUpdt_List_Attachments"
+					mode="Delete"
+					delete="onFileDeleted"
+					enableBusyIndicator="true"
+					items="{AttachModel>/}"
+				>
+					<StandardListItem
+						title="{AttachModel>DocumentFile}"
+						icon="{
+							path: 'AttachModel>MimeType',
+							formatter: 'com.amat.crm.svcmupdate.util.formatter.fnIconAttachment'
+						}"
+					/>
+				</List>
+			</ScrollContainer>
+		</content>
+		<buttons>
+			<!-- Cancel / Close Mass Update Dialog -->
+			<Button
+				id="id_MUpdt_Btn_Cancel"
+				text="{i18n>MASS_UPDT_BTN_CANCEL}"
+				press="onPressMassUpdtCancelBtn"
+				type="Emphasized"
+			/>
+			<!-- Update Service Cases with Attachments -->
+			<Button
+				id="id_MUpdt_Btn_Update"
+				text="{i18n>MASS_UPDT_BTN_UPDATE}"
+				press="onPressMassUpdate"
+				type="Emphasized"
+			/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

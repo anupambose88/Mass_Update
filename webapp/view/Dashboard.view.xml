@@ -1,0 +1,326 @@
+<!--  
+/**
+* @class
+* @public
+* @author X0115030
+* @since 10 March 2022
+* @extends 
+* @name com.amat.crm.massupdate.view.Dashboard
+*
+*********************************************************************************
+* Modifications.                                                                *
+*****************                                                               *
+* Date        		Author			PCR No.			Description of change       *
+* *******************************************************************************
+* 10/03/2022		X0115030		PCR038711		Initial version             *
+*********************************************************************************
+*/
+-->
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		controllerName="com.amat.crm.svcmupdate.controller.Dashboard" 
+		xmlns:html="http://www.w3.org/1999/xhtml"
+		xmlns:l="sap.ui.layout">
+	<Page title="{i18n>Title}"
+		  backgroundDesign="Transparent"
+		  showHeader="false">
+		<content>
+			<!-- ============================================================= -->
+			<!-- Search Panel Design										   -->
+			<!-- ============================================================= -->
+			<Panel	id="idHomeSearchPanel"
+					expandable="true" 
+					expanded="true" 
+					width="auto"
+					class="classPanelDesign sapUiSizeCompact"
+					backgroundDesign="Transparent">
+				<!-- Panel Header Design -->
+				<headerToolbar>
+					<Toolbar>
+						<Title class="classFontWtBold" 
+								text="{i18n>HOME_PANEL_HEADER}"/>
+						<ToolbarSpacer/>
+						<!-- Link for Clear Search Panel -->
+						<Link id="idHomeClearPnlLink" 
+								text="{i18n>Home_Panel_Clear_Btn}"
+								press="onPressHomePnlClear"
+								class="classHomePanelClearLink"/>
+						<!-- Button for Search Search Panel -->
+						<Button id="idHomeSearchPnlBtn"
+								text="{i18n>Home_Panel_Search_Btn}" 
+								press="onPressHomePnlSearch"
+								type="Emphasized"/>
+					</Toolbar>
+				</headerToolbar>
+				<!-- Panel Search Design -->
+				<l:Grid defaultSpan="L4 M12 S12"
+						class="sapUiSizeCompact classGridBorder">
+					<l:content>
+						<HBox>
+							<VBox>
+								<!-- PSL or Retrofit Number -->
+								<Text	text="{i18n>MANDATORY_SIGN}{i18n>Home_Pnl_PSL_Retro_No}"
+										class="classPanelLabelText sapUiTinyMarginBegin" />
+								<Input	id="idHomeSearchPnlInpPSLNo"
+										class="sapUiTinyMarginBegin" 
+										width="20rem"
+										liveChange="onLiveChangePSLNo"
+										maxLength="35"/>
+							</VBox>
+						</HBox>
+						<HBox>
+							<VBox>
+								<!-- Customer Name -->
+								<Text	text="{i18n>Home_Pnl_Customer_Name}"
+										class="classPanelLabelText sapUiTinyMarginBegin" />
+								<Input	id="idHomeSearchPnlInpCustName"
+										width="20rem"
+										class="sapUiTinyMarginBegin" 
+										maxLength="40"
+										submit="onSubmitSearchInput"
+										liveChange="onLiveChangeSearchInput"
+										enabled="{InpSer>/0/Enabled}"/>
+								<!-- Fab Name -->
+								<Text	text="{i18n>Home_Pnl_Fab_Name}"
+										class="classPanelLabelText sapUiTinyMarginBegin" />
+								<Input	id="idHomeSearchPnlInpFabName"
+										width="20rem"
+										class="sapUiTinyMarginBegin"
+										maxLength="40"
+										submit="onSubmitSearchInput"
+										liveChange="onLiveChangeSearchInput"
+										enabled="{InpSer>/1/Enabled}"/>
+							</VBox>
+						</HBox>
+						<HBox>
+							<VBox>
+								<!-- Functional Loc Id -->
+								<Text	text="{i18n>Home_Pnl_Func_Loc}"
+										class="classPanelLabelText sapUiTinyMarginBegin" />
+								<Input	id="idHomeSearchPnlInpFuncLoc"
+										width="20rem"
+										class="sapUiTinyMarginBegin"
+										maxLength="40"
+										submit="onSubmitSearchInput"
+										liveChange="onLiveChangeSearchInput"
+										enabled="{InpSer>/2/Enabled}"/>
+								<!-- Region -->
+								<Text	text="{i18n>Home_Pnl_Region}"
+										class="classPanelLabelText sapUiTinyMarginBegin" />
+								<Select	id="idHomeSearchPnlCBRegion"
+											items="{REGION>/}"
+											class="sapUiTinyMarginBegin"
+											width="20rem"
+											change="onSelectionChangeRegion"
+											enabled="{InpSer>/3/Enabled}">
+									<core:Item key="{REGION>GuidKey}" text="{REGION>KeyValue1}" />
+								</Select>
+							</VBox>
+						</HBox>
+					</l:content>
+				</l:Grid>
+			</Panel>
+			<!-- ====================================================================== -->
+			<!-- Mass Service Case Detail Table 										-->
+			<!-- ====================================================================== -->
+			<Table	id="idDashboardTableDetail"
+					mode="MultiSelect"
+					class="sapUiSizeCompact classTableColumn"
+					alternateRowColors="true"
+					contextualWidth="Auto"
+					items="{SVO>/}"
+					growing="true">
+				<!-- Table Header Tool -->
+				<headerToolbar>
+					<Toolbar>
+						<Title id="idHomeHeaderTool"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<!-- Service Case -->
+					<Column>
+						 <Button
+						 		id="idHomeTCSVC"
+						 		text="{i18n>Home_Table_Clm_Service_Case}{i18n>HASH_TAG}" 
+						 		type="Transparent" 
+						 		press="onPressHomeTableColumFilter"
+						 		class="classBtnTableHeader "/>
+					</Column>
+					<!-- Status -->
+					<Column>
+						 <Button
+						 		id="idHomeTCStatus"
+						 		text="{i18n>Home_Table_Clm_Status}{i18n>HASH_TAG}" 
+						 		type="Transparent" 
+						 		press="onPressHomeTableColumFilter"
+						 		class="classBtnTableHeader"/>
+					</Column>
+					<!-- Tool Serial -->
+					<Column	minScreenWidth="Tablet" 
+							demandPopin="true">
+						 <Button
+						 		id="idHomeTCToolSerial"
+						 		text="{i18n>Home_Table_Clm_Tool_Serial}" 
+						 		type="Transparent" 
+						 		press="onPressHomeTableColumFilter"
+						 		class="classBtnTableHeader"/>
+					</Column>
+					<!-- FL Id -->
+					<Column	minScreenWidth="Tablet"
+							demandPopin="true">
+						 <Button
+						 		id="idHomeTCFlId"
+						 		text="{i18n>Home_Table_Clm_FL_Id}" 
+						 		type="Transparent" 
+						 		press="onPressHomeTableColumFilter"
+						 		class="classBtnTableHeader"/>
+					</Column>
+					<!-- Fab Name -->
+					<Column	minScreenWidth="Tablet"
+							demandPopin="true">
+						 <Button
+						 		id="idHomeTCFabName"
+						 		text="{i18n>Home_Table_Clm_Fab_Name}" 
+						 		type="Transparent" 
+						 		press="onPressHomeTableColumFilter"
+						 		class="classBtnTableHeader"/>
+					</Column>
+					<!-- Cust Name -->
+					<Column	minScreenWidth="Tablet" 
+							demandPopin="true">
+						 <Button
+						 		id="idHomeTCCustName"
+						 		text="{i18n>Home_Table_Clm_Cust_Name}" 
+						 		type="Transparent" 
+						 		press="onPressHomeTableColumFilter"
+						 		class="classBtnTableHeader"/>
+					</Column>
+					<!-- Customer Tool -->
+					<Column	minScreenWidth="Tablet"
+							demandPopin="true">
+						 <Button
+						 		id="idHomeTCCustomerTool"
+						 		text="{i18n>HOME_TABLE_CLM_CUST_TOOL}{i18n>HASH_TAG}" 
+						 		type="Transparent" 
+						 		press="onPressHomeTableColumFilter"
+						 		class="classBtnTableHeader"/>
+					</Column>
+					<!-- Region -->
+					<Column	minScreenWidth="Tablet"
+							demandPopin="true">
+						 <Button
+						 		id="idHomeTCRegion"
+						 		text="{i18n>HOME_TABLE_CLM_REGION}" 
+						 		type="Transparent" 
+						 		press="onPressHomeTableColumFilter"
+						 		class="classBtnTableHeader"/>
+					</Column>
+					<!-- CustomerDecision -->
+					<Column	minScreenWidth="Tablet"
+							demandPopin="true">
+						 <Button
+						 		id="idHomeTCCustDeci"
+						 		text="{i18n>HOME_TABLE_CLM_CUST_DECI}" 
+						 		type="Transparent" 
+						 		press="onPressHomeTableColumFilter"
+						 		class="classBtnTableHeader"/>
+					</Column>
+					<!-- ReasonForWaive -->
+					<Column	minScreenWidth="Tablet"
+							demandPopin="true">
+						 <Button
+						 		id="idHomeTCReason"
+						 		text="{i18n>HOME_TABLE_CLM_REASON}" 
+						 		type="Transparent" 
+						 		press="onPressHomeTableColumFilter"
+						 		class="classBtnTableHeader"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem
+							type="Active"
+							press="onPressHomeTableColumn">
+						<!-- Service Case -->
+						<cells>
+							 <Text 
+							 	text="{SVO>Servicecaseno}"
+							 	class="classTabelTextPaddingLeft"/>
+						</cells>
+						<!-- Status -->
+						<cells>
+							 <Text
+							 	text="{SVO>StatusText}"
+							 	class="classTabelTextPaddingLeft"/>
+						</cells>
+						<!-- Tool Serial -->
+						<cells>
+							 <Text
+							 	text="{SVO>Serialnumber}"
+							 	class="classTabelTextPaddingLeft"/>
+						</cells>
+						<!-- FL Id -->
+						<cells>
+							 <Text
+							 	text="{SVO>FabId}"
+							 	class="classTabelTextPaddingLeft"/>
+						</cells>
+						<!-- Fab Name -->
+						<cells>
+							 <Text
+							 	text="{SVO>Fabname}"
+							 	class="classTabelTextPaddingLeft"/>
+						</cells>
+						<!-- Cust Name -->
+						<cells>
+							 <Text
+							 	text="{SVO>CustomerName}"
+							 	class="classTabelTextPaddingLeft"/>
+						</cells>
+						<!-- Customer Tool -->
+						<cells>
+							 <Text
+							 	text="{SVO>CustomerTool}"
+							 	class="classTabelTextPaddingLeft"/>
+						</cells>
+						<!-- Region -->
+						<cells>
+							 <Text
+							 	text="{SVO>Region}"
+							 	class="classTabelTextPaddingLeft"/>
+						</cells>
+						<!-- Customer Decision -->
+						<cells>
+							 <Text
+							 	text="{path: 'SVO>CustomerDecision', 
+									formatter: 'com.amat.crm.svcmupdate.util.formatter.fnCustDeciValue'}"
+							 	class="classTabelTextPaddingLeft"/>
+						</cells>
+						<!-- Reason for Waive / Reject -->
+						<cells>
+							 <Text
+							 	text="{SVO>ReasonForWaive}"
+							 	class="classTabelTextPaddingLeft"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<!-- ==================================================================== -->
+		<!-- Dashboard Footer Design											  -->
+		<!-- ==================================================================== -->
+		<footer>
+			<Bar>
+				<contentRight>
+					<!-- Clear Button -->
+					<Button	id="idHomeFooterClearBtn"
+							text="{i18n>Home_Footer_Clear_Btn}"
+							press="onPressHomeFooterClearBtn"/>
+					<!-- Search Button -->
+					<Button	id="idHomeFooterNextBtn"
+							text="{i18n>Home_Footer_Next_Btn}"
+							press="onPressHomeNextBtn"
+							type="Emphasized" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

@@ -1,0 +1,75 @@
+/**  
+* @class
+* @public
+* @author X0115030
+* @since 10 March 2022
+* @extends 
+* @name com.amat.crm.svcmupdate.css.style
+*
+**********************************************************************************
+* Modifications.                                                                 *
+****************                                                                 *
+* Date           Author         PCR No.           Description of change    	     *
+**********************************************************************************
+* 10/03/2022     X0115030       PCR038711         Initial version            	 *
+**********************************************************************************
+*/
+.classPanelDesign > .sapMPanelContent{
+	padding: 0rem !important;
+}
+
+.classFontWtBold{
+	font-weight: bold !important;
+}
+
+.classGridBorder {
+	margin-bottom: 0 !important;
+	padding: 0 !important;;
+}
+
+.classGridBorder.sapUiRespGrid.sapUiRespGridVSpace1>div {
+	margin-bottom: 0 !important;
+	margin-left: 0rem !important;
+}
+
+.classPanelLabelText {
+	padding-top: 0.5rem;
+	font-weight: 500;
+	color: #333333;
+}
+.classBtnBlackColor > .sapMBtnTransparent {
+	color: #000000 !important;
+}
+
+.classTableColumn >.sapMListTbl th {
+    background: #b8e5f4 !important;
+}
+
+.classTableColumn >.sapMTB.sapMTBHeader-CTX{
+	height: 1.5rem !important;
+}
+.classBtnTableHeader > .sapMBtnTransparent {
+	color: #53565a !important;
+	font-weight: bold !important;
+	padding-left: 0rem !important;
+}
+.classTabelTextPaddingLeft{
+	padding-left: 0rem !important;
+}
+.classHomePanelClearBtn{
+	color: #0070b1 !important;
+	font-weight: bold !important;
+}
+.classHomePanelClearLink{
+	color: #0070b1 !important;
+	font-weight: bold !important;
+}
+.classFileUploadCollection{
+	width: 32rem !important;
+}
+.classRedColorText{
+	color: #e52929 !important;
+}
+.classBlackColorText{
+	color: #000000 !important;
+}

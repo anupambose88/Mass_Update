@@ -1,0 +1,23 @@
+<!--  
+/**  
+* @class
+* @public
+* @author X0115030
+* @since 10 March 2022
+* @extends 
+* @name com.amat.crm.massupdate.view.App
+*
+*********************************************************************************
+* Modifications.                                                                *
+* ***************                                                               *
+* Date        		Author			PCR No.			Description of change       *
+* *******************************************************************************
+* 10/03/2022		X0115030		PCR038711		Initial version             *
+*********************************************************************************
+*/
+-->
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		controllerName="com.amat.crm.svcmupdate.controller.App" xmlns:html="http://www.w3.org/1999/xhtml"
+		displayBlock="true">
+	<App id="NavContainer"></App>
+</core:View>
